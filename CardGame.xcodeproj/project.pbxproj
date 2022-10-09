@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2780DEBF28F35F2B007A6A22 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780DEBE28F35F2B007A6A22 /* GameScene.swift */; };
+		2780DEC528F36336007A6A22 /* kokomi.png in Resources */ = {isa = PBXBuildFile; fileRef = 2780DEC428F36336007A6A22 /* kokomi.png */; };
+		2780DECA28F36F29007A6A22 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780DEC928F36F29007A6A22 /* MainMenuView.swift */; };
 		27CC3CA528EF97CB00C756D4 /* CardGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */; };
 		27CC3CA728EF97CB00C756D4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC3CA628EF97CB00C756D4 /* ContentView.swift */; };
 		27CC3CA928EF97D100C756D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CC3CA828EF97D100C756D4 /* Assets.xcassets */; };
@@ -33,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2780DEBE28F35F2B007A6A22 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		2780DEC428F36336007A6A22 /* kokomi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kokomi.png; path = ../../../kokomi.png; sourceTree = "<group>"; };
+		2780DEC928F36F29007A6A22 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		27CC3CA128EF97CB00C756D4 /* CardGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameApp.swift; sourceTree = "<group>"; };
 		27CC3CA628EF97CB00C756D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2780DEC328F36321007A6A22 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				2780DEC428F36336007A6A22 /* kokomi.png */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
 		27CC3C9828EF97CB00C756D4 = {
 			isa = PBXGroup;
 			children = (
@@ -95,11 +109,14 @@
 		27CC3CA328EF97CB00C756D4 /* CardGame */ = {
 			isa = PBXGroup;
 			children = (
+				2780DEC328F36321007A6A22 /* Cards */,
 				27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */,
 				27CC3CA628EF97CB00C756D4 /* ContentView.swift */,
+				2780DEC928F36F29007A6A22 /* MainMenuView.swift */,
 				27CC3CA828EF97D100C756D4 /* Assets.xcassets */,
 				27CC3CAD28EF97D100C756D4 /* Info.plist */,
 				27CC3CAA28EF97D100C756D4 /* Preview Content */,
+				2780DEBE28F35F2B007A6A22 /* GameScene.swift */,
 			);
 			path = CardGame;
 			sourceTree = "<group>";
@@ -146,6 +163,8 @@
 			dependencies = (
 			);
 			name = CardGame;
+			packageProductDependencies = (
+			);
 			productName = CardGame;
 			productReference = 27CC3CA128EF97CB00C756D4 /* CardGame.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +236,8 @@
 				Base,
 			);
 			mainGroup = 27CC3C9828EF97CB00C756D4;
+			packageReferences = (
+			);
 			productRefGroup = 27CC3CA228EF97CB00C756D4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CC3CAC28EF97D100C756D4 /* Preview Assets.xcassets in Resources */,
+				2780DEC528F36336007A6A22 /* kokomi.png in Resources */,
 				27CC3CA928EF97D100C756D4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,7 +281,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2780DEBF28F35F2B007A6A22 /* GameScene.swift in Sources */,
 				27CC3CA728EF97CB00C756D4 /* ContentView.swift in Sources */,
+				2780DECA28F36F29007A6A22 /* MainMenuView.swift in Sources */,
 				27CC3CA528EF97CB00C756D4 /* CardGameApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
