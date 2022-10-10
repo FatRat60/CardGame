@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainMenuView: View {
+    @State private var nextView: Int = 0
+    
     var body: some View {
         ZStack{
             Image("mainMenuBackground")
@@ -18,7 +20,7 @@ struct MainMenuView: View {
                 Spacer()
                 Text("FatRat60's Card Game")
                     .font(.system(size: 28, weight: .bold))
-                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 5){
+                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: -10){
                     Image("kokomi")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -56,7 +58,7 @@ struct MainMenuView: View {
                         .background(Color.purple)
                         .cornerRadius(30)
                 })
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {nextView = 4}, label: {
                     Text("Options")
                         .padding()
                         .font(.title)
@@ -67,6 +69,7 @@ struct MainMenuView: View {
                 Spacer()
             }
         }
+        .navigate(to: OptionView(), when: Binding<Bool>(get: {nextView == 4}, set: {_ in}))
     }
 }
 
