@@ -1,8 +1,8 @@
 //
-//  GameScene.swift
+//  Card.swift
 //  CardGame
 //
-//  Created by Kyle Hultgren on 10/9/22.
+//  Created by Kyle Hultgren on 10/15/22.
 //
 
 import Foundation
