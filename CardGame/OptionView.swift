@@ -20,6 +20,7 @@ struct OptionView: View {
                 Spacer()
                 Text("Options")
                     .font(.system(size: 28, weight: .bold))
+                Divider()
                 Spacer()
                 
                 Spacer()

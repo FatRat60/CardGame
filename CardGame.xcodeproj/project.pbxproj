@@ -8,9 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2736162328FB9DFE002C4941 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736162228FB9DFE002C4941 /* Card.swift */; };
-		2780DEC528F36336007A6A22 /* kokomi.png in Resources */ = {isa = PBXBuildFile; fileRef = 2780DEC428F36336007A6A22 /* kokomi.png */; };
+		2736163628FBA1A9002C4941 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736163528FBA1A9002C4941 /* Test.swift */; };
+		2736163B28FBA1ED002C4941 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736163A28FBA1ED002C4941 /* Game.swift */; };
+		275CCC6A28FBA3260045B5C4 /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275CCC6928FBA3260045B5C4 /* PreGameView.swift */; };
+		275CCC7528FCA2420045B5C4 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275CCC7428FCA2420045B5C4 /* StoreView.swift */; };
+		2778451D29037974007B51ED /* CardSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778451C29037974007B51ED /* CardSelect.swift */; };
+		2778452229037BA1007B51ED /* CardSelectCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778452129037BA1007B51ED /* CardSelectCard.swift */; };
 		2780DECA28F36F29007A6A22 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780DEC928F36F29007A6A22 /* MainMenuView.swift */; };
 		2780DECF28F3DC38007A6A22 /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780DECE28F3DC38007A6A22 /* OptionView.swift */; };
+		279690D52904B23A00267B46 /* SinglePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279690D42904B23A00267B46 /* SinglePlayerView.swift */; };
 		27CC3CA528EF97CB00C756D4 /* CardGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */; };
 		27CC3CA928EF97D100C756D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CC3CA828EF97D100C756D4 /* Assets.xcassets */; };
 		27CC3CAC28EF97D100C756D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CC3CAB28EF97D100C756D4 /* Preview Assets.xcassets */; };
@@ -37,9 +43,15 @@
 
 /* Begin PBXFileReference section */
 		2736162228FB9DFE002C4941 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		2780DEC428F36336007A6A22 /* kokomi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kokomi.png; path = ../../../kokomi.png; sourceTree = "<group>"; };
+		2736163528FBA1A9002C4941 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		2736163A28FBA1ED002C4941 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		275CCC6928FBA3260045B5C4 /* PreGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreGameView.swift; path = ../PreGameView.swift; sourceTree = "<group>"; };
+		275CCC7428FCA2420045B5C4 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
+		2778451C29037974007B51ED /* CardSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSelect.swift; sourceTree = "<group>"; };
+		2778452129037BA1007B51ED /* CardSelectCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSelectCard.swift; sourceTree = "<group>"; };
 		2780DEC928F36F29007A6A22 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		2780DECE28F3DC38007A6A22 /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
+		279690D42904B23A00267B46 /* SinglePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePlayerView.swift; sourceTree = "<group>"; };
 		27CC3CA128EF97CB00C756D4 /* CardGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameApp.swift; sourceTree = "<group>"; };
 		27CC3CA828EF97D100C756D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,14 +90,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2780DEC328F36321007A6A22 /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				2780DEC428F36336007A6A22 /* kokomi.png */,
-			);
-			path = Cards;
-			sourceTree = "<group>";
-		};
 		27CC3C9828EF97CB00C756D4 = {
 			isa = PBXGroup;
 			children = (
@@ -109,14 +113,20 @@
 		27CC3CA328EF97CB00C756D4 /* CardGame */ = {
 			isa = PBXGroup;
 			children = (
-				2780DEC328F36321007A6A22 /* Cards */,
+				275CCC6928FBA3260045B5C4 /* PreGameView.swift */,
+				279690D42904B23A00267B46 /* SinglePlayerView.swift */,
+				2778451C29037974007B51ED /* CardSelect.swift */,
+				2778452129037BA1007B51ED /* CardSelectCard.swift */,
 				27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */,
 				2780DEC928F36F29007A6A22 /* MainMenuView.swift */,
+				275CCC7428FCA2420045B5C4 /* StoreView.swift */,
 				2780DECE28F3DC38007A6A22 /* OptionView.swift */,
 				27CC3CA828EF97D100C756D4 /* Assets.xcassets */,
 				27CC3CAD28EF97D100C756D4 /* Info.plist */,
 				27CC3CAA28EF97D100C756D4 /* Preview Content */,
 				2736162228FB9DFE002C4941 /* Card.swift */,
+				2736163528FBA1A9002C4941 /* Test.swift */,
+				2736163A28FBA1ED002C4941 /* Game.swift */,
 			);
 			path = CardGame;
 			sourceTree = "<group>";
@@ -255,7 +265,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CC3CAC28EF97D100C756D4 /* Preview Assets.xcassets in Resources */,
-				2780DEC528F36336007A6A22 /* kokomi.png in Resources */,
 				27CC3CA928EF97D100C756D4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,8 +290,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2778451D29037974007B51ED /* CardSelect.swift in Sources */,
 				2736162328FB9DFE002C4941 /* Card.swift in Sources */,
+				2736163B28FBA1ED002C4941 /* Game.swift in Sources */,
+				275CCC7528FCA2420045B5C4 /* StoreView.swift in Sources */,
 				2780DECA28F36F29007A6A22 /* MainMenuView.swift in Sources */,
+				2778452229037BA1007B51ED /* CardSelectCard.swift in Sources */,
+				2736163628FBA1A9002C4941 /* Test.swift in Sources */,
+				275CCC6A28FBA3260045B5C4 /* PreGameView.swift in Sources */,
+				279690D52904B23A00267B46 /* SinglePlayerView.swift in Sources */,
 				2780DECF28F3DC38007A6A22 /* OptionView.swift in Sources */,
 				27CC3CA528EF97CB00C756D4 /* CardGameApp.swift in Sources */,
 			);

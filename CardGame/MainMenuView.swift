@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainMenuView: View {
     @State private var nextView: Int = 0
+    @State private var isAlert: Bool = false
     
     var body: some View {
         ZStack{
@@ -20,6 +21,7 @@ struct MainMenuView: View {
                 Spacer()
                 Text("FatRat60's Card Game")
                     .font(.system(size: 28, weight: .bold))
+                Divider()
                 HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: -10){
                     Image("kokomi")
                         .resizable()
@@ -34,7 +36,7 @@ struct MainMenuView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {nextView = 1}, label: {
                     Text("Singleplayer")
                         .padding()
                         .font(.title)
@@ -42,7 +44,7 @@ struct MainMenuView: View {
                         .background(Color.purple)
                         .cornerRadius(30)
                 })
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {isAlert = true}, label: {
                     Text("Multiplayer")
                         .padding()
                         .font(.title)
@@ -50,7 +52,7 @@ struct MainMenuView: View {
                         .background(Color.purple)
                         .cornerRadius(30)
                 })
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {nextView = 3}, label: {
                     Text("Store")
                         .padding()
                         .font(.title)
@@ -69,7 +71,13 @@ struct MainMenuView: View {
                 Spacer()
             }
         }
+        .navigate(to: PreGameView(), when: Binding<Bool>(get: {nextView == 1}, set: {_ in}))
+        .navigate(to: MainMenuView(), when: Binding<Bool>(get: {nextView == 2}, set: {_ in}))
+        .navigate(to: StoreView(), when: Binding<Bool>(get: {nextView == 3}, set: {_ in}))
         .navigate(to: OptionView(), when: Binding<Bool>(get: {nextView == 4}, set: {_ in}))
+        .alert(isPresented: $isAlert, content: {
+            Alert(title: Text("STOP"), message: Text("Feature Not Yet Implemented"), dismissButton: .cancel({isAlert = false}))
+        })
     }
 }
 
