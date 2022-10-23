@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SinglePlayerView: View {
     var selDeck: String
+    var numPlayers: Int
     
     var body: some View {
         ZStack{
@@ -17,12 +18,13 @@ struct SinglePlayerView: View {
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
             Text(selDeck)
+            Text(String(numPlayers))
         }
     }
 }
 
 struct SinglePlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        SinglePlayerView(selDeck: "Classic")
+        SinglePlayerView(selDeck: "Classic", numPlayers: 4)
     }
 }
