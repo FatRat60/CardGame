@@ -27,9 +27,7 @@ struct MidView: View {
                     card in
                     VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: CGFloat(-20)){
                     CardSelectCard(cardSel: card)
-                        Button(action: {selDeck = card.name
-                            print("FUCK")
-                        }, label: {
+                        Button(action: {selDeck = card.name}, label: {
                         Text("Use")
                     }).disabled(!card.canPick)
                         .padding(/*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
@@ -106,13 +104,15 @@ struct PreGameView: View {
                 Spacer()
             }
         }
-        .navigate(to: SinglePlayerView(selDeck: selDeck, numPlayers: numPlayers), when: $pressed)
+        .navigate(to: SinglePlayerView(selDeck: selDeck, numPlayers: numPlayers, user: testUser), when: $pressed)
         .alert(isPresented: $isAlert, content: {
             Alert(title: Text("STOP"), message: Text("Please select a deck to continue"),
                   dismissButton: .cancel(Text("Ok"), action: {isAlert = false}))
             })
     }
 }
+
+let testUser = User(username: "Garsh", displayName: "BigCheezBoi69", money: 1000)
 
 struct PreGameView_Previews: PreviewProvider {
     static var previews: some View {
