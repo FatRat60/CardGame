@@ -15,11 +15,12 @@ struct SinglePlayerView2: View {
     @State private var dealer :Player = Player()
     @State private var deck = [Card]()
     @State private var pressStart: Bool = false
-    @State private var lost: Bool = false
-    @State private var won: Bool = false
+    @State private var handOver: Bool = false
+    @State private var msg: String = "Lose"
     @State private var gamesPlayed: Int = 0
     @State private var initialMoney = 0
     @State private var gameEnd: Bool = false
+    @State private var bet: Int = 5
     
     var start: some View {
         VStack{
@@ -38,7 +39,9 @@ struct SinglePlayerView2: View {
                 player.hand.append(deck.randomElement()!)
                 dealer.hand.append(deck.randomElement()!)
                 dealer.hand.append(deck.randomElement()!)
-                pressStart = true}, label: {
+                pressStart = true
+                
+        }, label: {
             Text("Start")
                 .padding()
                 .font(.title)
@@ -52,6 +55,11 @@ struct SinglePlayerView2: View {
     var game: some View {
         ZStack{
             VStack{
+                Text("Current Bet: $\(bet)")
+                    .padding()
+                    .foregroundColor(.black)
+                    .background(Color.blue)
+                    .cornerRadius(10)
             HStack{
                 Spacer()
                 Text(player.name)
@@ -73,11 +81,14 @@ struct SinglePlayerView2: View {
                             let currSum = player.sumHand()
                             print(currSum)
                         if (currSum > 21){
-                            print("Lost")
-                        lost = true
+                            player.money -= bet
+                            msg = "Lose..."
+                        handOver = true
                     }
                         else if (currSum == 21){
-                            won = true
+                            player.money += bet * 2
+                            msg = "Won w/ BlackJack!"
+                            handOver = true
                         }}, label: {
                 Text("Hit Me")
                     .padding()
@@ -91,8 +102,12 @@ struct SinglePlayerView2: View {
                             dealer.hand.append(deck.randomElement()!)
                             DealerTotal = dealer.sumHand()
                         }
-                        if (DealerTotal > 21 || total > DealerTotal){won = true}
-                        else { lost = true}
+                        if (DealerTotal > 21 || total > DealerTotal){player.money += bet
+                            msg = "Win!"
+                            handOver = true}
+                        else {player.money -= bet
+                            msg = "Lose..."
+                            handOver = true}
                     }, label: {
                         Text("Stay")
                             .padding()
@@ -103,20 +118,17 @@ struct SinglePlayerView2: View {
                 }
             }
         }
-        .alert(isPresented: $lost, content: {
-            Alert(title: Text("YOU LOST"), message: Text("play again?"),
-                  dismissButton: .cancel({lost = false}))
-        })
-        .alert(isPresented: $won, content: {
-            Alert(title: Text("YOU WON"), message: Text("play again?"),
+        .alert(isPresented: $handOver, content: {
+            Alert(title: Text("You " + msg), message: Text("play again?"),
                   primaryButton: .default(Text("Yes"), action: {gamesPlayed += 1
-                        player.hand = [Card]()
-                        dealer.hand = [Card]()
+                        bet += 5
+                        player.hand.removeAll()
+                        dealer.hand.removeAll()
                         player.hand.append(deck.randomElement()!)
                         player.hand.append(deck.randomElement()!)
                         dealer.hand.append(deck.randomElement()!)
                         dealer.hand.append(deck.randomElement()!)
-                        won = false}),
+                        handOver = false}),
                   secondaryButton: .default(Text("Stop"), action: {gamesPlayed += 1
                         gameEnd = true}))
         })
