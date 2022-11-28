@@ -104,7 +104,7 @@ struct PreGameView: View {
                 Spacer()
             }
         }
-        .navigate(to: SinglePlayerView(selDeck: selDeck, numPlayers: numPlayers, user: testUser), when: $pressed)
+        .navigate(to: SinglePlayerView2(selDeck: selDeck, numPlayers: numPlayers, user: testUser), when: $pressed)
         .alert(isPresented: $isAlert, content: {
             Alert(title: Text("STOP"), message: Text("Please select a deck to continue"),
                   dismissButton: .cancel(Text("Ok"), action: {isAlert = false}))

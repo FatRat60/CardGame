@@ -8,39 +8,83 @@
 import Foundation
 import SpriteKit
 
-enum CardSuite :Int {
+enum CardSuite :Int, CaseIterable {
     case clubs,
          spades,
          hearts,
          diamond
 }
 
-class Card : SKSpriteNode {
+struct Card :Identifiable, Equatable{
+    
+    let id :Int
     let cardSuite :CardSuite
     let cardNum :String
-    let frontText :SKTexture
-    let backText :SKTexture
+    let frontText :String
+    let backText :String
+    var currText :String
+    var faceUp: Bool
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("NSCoding not supported")
-    }
-    
-    init(cardSuite :CardSuite, cardNum :String) {
+    init(cardSuite :CardSuite, cardNum :String, deckType: String) {
         self.cardSuite = cardSuite
-        self.cardNum = cardNum
-        self.backText = SKTexture(imageNamed: "CardBack")
+        self.backText = "cardBack"
+        self.id = Int(cardNum)! + (cardSuite.rawValue * 13)
         var frontName :String
         switch cardSuite {
         case .clubs:
-            frontName = "C"
+            frontName = "1"
         case .spades:
-            frontName = "S"
+            frontName = "2"
         case .hearts:
-            frontName = "H"
+            frontName = "4"
         case .diamond:
-            frontName = "D"
+            frontName = "8"
         }
-        self.frontText = SKTexture(imageNamed: frontName + cardNum)
-        super.init(texture: frontText, color: .clear, size: frontText.size())
+        // Add deckType + "_" before when u get the card files on your computer
+        self.frontText = deckType + "/" + cardNum + frontName
+        if (Int(cardNum) ?? 0 > 10) {self.cardNum = "10"}
+        else {self.cardNum = cardNum}
+        self.currText = self.frontText
+        self.faceUp = false
+    }
+    
+    mutating func flip() {
+        
+        if faceUp {
+            self.currText = self.backText
+        } else {
+            self.currText = self.frontText
+        }
+        faceUp = !faceUp
+    }
+}
+
+class Player {
+    let name :String
+    var money :Int
+    @Published var hand :[Card]
+    
+    init(name :String, money :Int) {
+        self.name = name
+        self.money = money
+        self.hand = [Card]()
+    }
+    
+    init() {
+        self.name = "Dealer"
+        self.money = 0
+        self.hand = [Card]()
+    }
+    
+    func sumHand() -> Int{
+        var cnt = 0
+        for card in self.hand{
+            let val = Int(card.cardNum) ?? 0
+            if (val == 1 && cnt + 11 <= 21){
+                cnt += 11
+            }
+            else{cnt += val}
+        }
+        return cnt
     }
 }

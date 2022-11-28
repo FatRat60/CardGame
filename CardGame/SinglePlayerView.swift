@@ -6,21 +6,27 @@
 //
 
 import SwiftUI
+import SpriteKit
 
 struct SinglePlayerView: View {
     var selDeck: String
     var numPlayers: Int
     var user :User
     
+    var scene: SKScene {
+        let scene = GameScene()
+        scene.scaleMode = .fill
+        scene.backgroundColor = SKColor.green
+        scene.userData = NSMutableDictionary()
+        scene.userData?.setObject(user, forKey: "user" as NSCopying)
+        scene.userData?.setObject(selDeck, forKey: "selDeck" as NSCopying)
+        scene.userData?.setObject(numPlayers, forKey: "numPlayers" as NSCopying)
+        return scene
+    }
+    
     var body: some View {
-        ZStack{
-            Image("mainMenuBackground")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-            Text(selDeck)
-            Text(String(numPlayers))
-        }
+        SpriteView(scene: scene)
+            .ignoresSafeArea()
     }
 }
 
