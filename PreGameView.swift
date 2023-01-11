@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct TopView: View {
     var body: some View {
@@ -107,15 +108,20 @@ struct PreGameView: View {
         .navigate(to: SinglePlayerView2(selDeck: selDeck, numPlayers: numPlayers, user: testUser), when: $pressed)
         .alert(isPresented: $isAlert, content: {
             Alert(title: Text("STOP"), message: Text("Please select a deck to continue"),
-                  dismissButton: .cancel(Text("Ok"), action: {isAlert = false}))
+                  dismissButton: .cancel(Text("Ok"), action: {isAlert = false
+                    AF.request("http://localhost:6969/user/FatRat60", parameters: ["username":"FatRat60", "password":"garshMaxie"]).response { response in debugPrint(response)}
+                  }))
             })
     }
 }
 
 let testUser = User(username: "Garsh", displayName: "BigCheezBoi69", money: 1000)
 
+
 struct PreGameView_Previews: PreviewProvider {
     static var previews: some View {
         PreGameView()
     }
 }
+
+/* AF.request("http://localhost:6969/signup", method: .post, parameters: ["username":"FatRat60", "password":"garshMaxie"], encoder: JSONParameterEncoder.default) */
