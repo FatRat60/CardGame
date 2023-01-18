@@ -32,6 +32,6 @@ struct SinglePlayerView: View {
 
 struct SinglePlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        SinglePlayerView(selDeck: "Classic", numPlayers: 4, user: User(username: "Garsh", displayName: "Garsh", money: 102093))
+        SinglePlayerView(selDeck: "Classic", numPlayers: 4, user: User(username: "Garsh", displayName: "Garsh"))
     }
 }

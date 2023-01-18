@@ -45,6 +45,6 @@ struct GameResultsView: View {
 
 struct GameResultsView_Previews: PreviewProvider {
     static var previews: some View {
-        GameResultsView(user: User(username: "Garsh", displayName: "Garsh", money: 102093), gamesPlayed: 12, moneyEarned: -45000)
+        GameResultsView(user: User(username: "Garsh", displayName: "Garsh"), gamesPlayed: 12, moneyEarned: -45000)
     }
 }
