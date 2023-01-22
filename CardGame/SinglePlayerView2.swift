@@ -87,6 +87,7 @@ struct SinglePlayerView2: View {
                     }
                         else if (currSum == 21){
                             player.money += bet * 2
+                            user.wins += 1
                             msg = "Won w/ BlackJack!"
                             handOver = true
                         }}, label: {
@@ -103,6 +104,7 @@ struct SinglePlayerView2: View {
                             DealerTotal = dealer.sumHand()
                         }
                         if (DealerTotal > 21 || total > DealerTotal){player.money += bet
+                            user.wins += 1
                             msg = "Win!"
                             handOver = true}
                         else {player.money -= bet

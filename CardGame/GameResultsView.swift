@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct GameResultsView: View {
     var user: User
@@ -29,7 +30,12 @@ struct GameResultsView: View {
                     Text("Better luck next time!")
                 }
                 Spacer()
-                Button(action: {toMain = true}, label: {
+                Button(action: {user.gamesPlayed += gamesPlayed
+                        user.money += moneyEarned
+                    AF.request("http://localhost:6969/updateUser", method: .post, parameters: ["username":user.username, "displayName":user.displayName, "money":String(user.money), "wins":String(user.wins), "gamesPlayed":String(user.gamesPlayed)], encoder: JSONParameterEncoder.default).response {
+                        response in debugPrint(response)
+                    }
+                        toMain = true}, label: {
                     Text("Main Menu")
                         .padding()
                         .font(.title)

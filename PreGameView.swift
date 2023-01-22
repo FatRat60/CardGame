@@ -92,7 +92,12 @@ struct PreGameView: View {
                 BotView(numPlayers: $numPlayers)
                 Spacer()
                 Button(action: {if !selDeck.isEmpty {
-            
+                    AF.request("http://localhost:6969/user/FatRat60", parameters: ["username":"FatRat60", "password":"garshMaxie"]).responseJSON { (response) in
+                        if let data = response.value as? [String: Any] {
+                            user = User(username: data["username"] as! String, displayName: data["displayName"] as! String, money: data["money"] as! Int, wins: data["wins"] as! Int, gamesPlayed: data["gamesPlayed"] as! Int)
+                        }
+                            else {return}
+                    }
                     pressed = true
                 } else {
                     isAlert = true
@@ -111,12 +116,6 @@ struct PreGameView: View {
         .alert(isPresented: $isAlert, content: {
             Alert(title: Text("STOP"), message: Text("Please select a deck to continue"),
                   dismissButton: .cancel(Text("Ok"), action: {isAlert = false
-                    AF.request("http://localhost:6969/user/FatRat60", parameters: ["username":"FatRat60", "password":"garshMaxie"]).responseJSON { (response) in
-                        if let data = response.value as? [String: Any] {
-                            user = User(username: data["username"] as! String, displayName: data["displayName"] as! String, money: data["money"] as! Int, wins: data["wins"] as! Int, gamesPlayed: data["gamesPlayed"] as! Int)
-                        }
-                            else {return}
-                    }
                   }))
             })
     }
