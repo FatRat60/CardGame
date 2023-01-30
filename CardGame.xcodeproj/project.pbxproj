@@ -14,14 +14,16 @@
 		2736162328FB9DFE002C4941 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736162228FB9DFE002C4941 /* Card.swift */; };
 		2736163628FBA1A9002C4941 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736163528FBA1A9002C4941 /* Test.swift */; };
 		2736163B28FBA1ED002C4941 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736163A28FBA1ED002C4941 /* Game.swift */; };
+		27570D40297F1D9200BB81F1 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27570D3F297F1D9200BB81F1 /* LogInView.swift */; };
 		275CCC6A28FBA3260045B5C4 /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275CCC6928FBA3260045B5C4 /* PreGameView.swift */; };
 		275CCC7528FCA2420045B5C4 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275CCC7428FCA2420045B5C4 /* StoreView.swift */; };
 		2778451D29037974007B51ED /* CardSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778451C29037974007B51ED /* CardSelect.swift */; };
 		2778452229037BA1007B51ED /* CardSelectCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778452129037BA1007B51ED /* CardSelectCard.swift */; };
 		2780DECA28F36F29007A6A22 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780DEC928F36F29007A6A22 /* MainMenuView.swift */; };
 		2780DECF28F3DC38007A6A22 /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2780DECE28F3DC38007A6A22 /* OptionView.swift */; };
-		279690D52904B23A00267B46 /* SinglePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279690D42904B23A00267B46 /* SinglePlayerView.swift */; };
+		2792A1FF298775490054A5C5 /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2792A1FE298775490054A5C5 /* LeaderBoardView.swift */; };
 		279690DA29050A6C00267B46 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279690D929050A6C00267B46 /* User.swift */; };
+		27A0ED942984B68800496404 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A0ED932984B68800496404 /* SignUpView.swift */; };
 		27CC3CA528EF97CB00C756D4 /* CardGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */; };
 		27CC3CA928EF97D100C756D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CC3CA828EF97D100C756D4 /* Assets.xcassets */; };
 		27CC3CAC28EF97D100C756D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CC3CAB28EF97D100C756D4 /* Preview Assets.xcassets */; };
@@ -53,14 +55,16 @@
 		2736162228FB9DFE002C4941 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2736163528FBA1A9002C4941 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		2736163A28FBA1ED002C4941 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		27570D3F297F1D9200BB81F1 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		275CCC6928FBA3260045B5C4 /* PreGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreGameView.swift; path = ../PreGameView.swift; sourceTree = "<group>"; };
 		275CCC7428FCA2420045B5C4 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		2778451C29037974007B51ED /* CardSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSelect.swift; sourceTree = "<group>"; };
 		2778452129037BA1007B51ED /* CardSelectCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSelectCard.swift; sourceTree = "<group>"; };
 		2780DEC928F36F29007A6A22 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		2780DECE28F3DC38007A6A22 /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
-		279690D42904B23A00267B46 /* SinglePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePlayerView.swift; sourceTree = "<group>"; };
+		2792A1FE298775490054A5C5 /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		279690D929050A6C00267B46 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		27A0ED932984B68800496404 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		27CC3CA128EF97CB00C756D4 /* CardGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameApp.swift; sourceTree = "<group>"; };
 		27CC3CA828EF97D100C756D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,7 +129,6 @@
 			children = (
 				275CCC6928FBA3260045B5C4 /* PreGameView.swift */,
 				279690D929050A6C00267B46 /* User.swift */,
-				279690D42904B23A00267B46 /* SinglePlayerView.swift */,
 				27222F86291C8F5500D578A2 /* SinglePlayerView2.swift */,
 				271AC6FC29355BE90014D1A4 /* GameResultsView.swift */,
 				2778451C29037974007B51ED /* CardSelect.swift */,
@@ -133,6 +136,9 @@
 				2778452129037BA1007B51ED /* CardSelectCard.swift */,
 				27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */,
 				2780DEC928F36F29007A6A22 /* MainMenuView.swift */,
+				2792A1FE298775490054A5C5 /* LeaderBoardView.swift */,
+				27570D3F297F1D9200BB81F1 /* LogInView.swift */,
+				27A0ED932984B68800496404 /* SignUpView.swift */,
 				275CCC7428FCA2420045B5C4 /* StoreView.swift */,
 				2780DECE28F3DC38007A6A22 /* OptionView.swift */,
 				27CC3CA828EF97D100C756D4 /* Assets.xcassets */,
@@ -306,8 +312,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27570D40297F1D9200BB81F1 /* LogInView.swift in Sources */,
 				2778451D29037974007B51ED /* CardSelect.swift in Sources */,
 				2736162328FB9DFE002C4941 /* Card.swift in Sources */,
+				2792A1FF298775490054A5C5 /* LeaderBoardView.swift in Sources */,
 				2736163B28FBA1ED002C4941 /* Game.swift in Sources */,
 				275CCC7528FCA2420045B5C4 /* StoreView.swift in Sources */,
 				2780DECA28F36F29007A6A22 /* MainMenuView.swift in Sources */,
@@ -317,8 +325,8 @@
 				27222F8C291D914200D578A2 /* HandView.swift in Sources */,
 				27222F87291C8F5500D578A2 /* SinglePlayerView2.swift in Sources */,
 				275CCC6A28FBA3260045B5C4 /* PreGameView.swift in Sources */,
+				27A0ED942984B68800496404 /* SignUpView.swift in Sources */,
 				279690DA29050A6C00267B46 /* User.swift in Sources */,
-				279690D52904B23A00267B46 /* SinglePlayerView.swift in Sources */,
 				2780DECF28F3DC38007A6A22 /* OptionView.swift in Sources */,
 				27CC3CA528EF97CB00C756D4 /* CardGameApp.swift in Sources */,
 			);
@@ -414,6 +422,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -468,6 +477,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

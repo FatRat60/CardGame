@@ -7,9 +7,60 @@
 
 import SwiftUI
 
+struct buttonView: View {
+    @Binding var nextView: Int
+    @Binding var isAlert: Bool
+    @Binding var user: User?
+    
+    var body: some View {
+        Button(action: {nextView = 1}, label: {
+            Text("Singleplayer")
+                .padding()
+                .font(.title)
+                .foregroundColor(.black)
+                .background(Color.purple)
+                .cornerRadius(30)
+        })
+        Button(action: {isAlert = true}, label: {
+            Text("Multiplayer")
+                .padding()
+                .font(.title)
+                .foregroundColor(.black)
+                .background(Color.purple)
+                .cornerRadius(30)
+        })
+        Button(action: {nextView = 5}, label: {
+            Text("Leaderboards")
+                .padding()
+                .font(.title)
+                .foregroundColor(.black)
+                .background(Color.purple)
+                .cornerRadius(30)
+        }).disabled(user == nil)
+        Button(action: {nextView = 3}, label: {
+            Text("Store")
+                .padding()
+                .font(.title)
+                .foregroundColor(.black)
+                .background(Color.purple)
+                .cornerRadius(30)
+        })
+        Button(action: {nextView = 4}, label: {
+            Text("Options")
+                .padding()
+                .font(.title)
+                .foregroundColor(.black)
+                .background(Color.purple)
+                .cornerRadius(30)
+        })
+    }
+}
+
 struct MainMenuView: View {
-    @State private var nextView: Int = 0
     @State private var isAlert: Bool = false
+    @State var user: User? = nil
+    @State private var nextView: Int = 0
+    @State private var logView: Bool = false
     
     var body: some View {
         ZStack{
@@ -19,6 +70,27 @@ struct MainMenuView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .center, spacing: 5){
                 Spacer()
+                if user == nil {Button(action: {logView=true}, label: {
+                    Text("Login")
+                        .padding()
+                        .font(.caption)
+                        .foregroundColor(.black)
+                        .background(Color.purple)
+                        .cornerRadius(30)
+                })}
+                else{
+                    HStack{
+                        Text("Welcome, " + user!.displayName)
+                        Button(action: {user = nil}, label: {
+                            Text("Sign Out")
+                                .padding()
+                                .font(.caption)
+                                .foregroundColor(.black)
+                                .background(Color.purple)
+                                .cornerRadius(30)
+                        })
+                    }
+                }
                 Text("FatRat60's Card Game")
                     .font(.system(size: 28, weight: .bold))
                 Divider()
@@ -36,38 +108,7 @@ struct MainMenuView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
-                Button(action: {nextView = 1}, label: {
-                    Text("Singleplayer")
-                        .padding()
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .background(Color.purple)
-                        .cornerRadius(30)
-                })
-                Button(action: {isAlert = true}, label: {
-                    Text("Multiplayer")
-                        .padding()
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .background(Color.purple)
-                        .cornerRadius(30)
-                })
-                Button(action: {nextView = 3}, label: {
-                    Text("Store")
-                        .padding()
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .background(Color.purple)
-                        .cornerRadius(30)
-                })
-                Button(action: {nextView = 4}, label: {
-                    Text("Options")
-                        .padding()
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .background(Color.purple)
-                        .cornerRadius(30)
-                })
+                buttonView(nextView: $nextView, isAlert: $isAlert, user: $user)
                 Spacer()
             }
         }
@@ -75,8 +116,12 @@ struct MainMenuView: View {
         .navigate(to: MainMenuView(), when: Binding<Bool>(get: {nextView == 2}, set: {_ in}))
         .navigate(to: StoreView(), when: Binding<Bool>(get: {nextView == 3}, set: {_ in}))
         .navigate(to: OptionView(), when: Binding<Bool>(get: {nextView == 4}, set: {_ in}))
+        .navigate(to: MainMenuView(), when: Binding<Bool>(get: {nextView == 5}, set: {_ in}))
         .alert(isPresented: $isAlert, content: {
             Alert(title: Text("STOP"), message: Text("Feature Not Yet Implemented"), dismissButton: .cancel({isAlert = false}))
+        })
+        .popover(isPresented: $logView, arrowEdge: .top, content: {
+            LogInView(user: $user, keepOpen: $logView)
         })
     }
 }
