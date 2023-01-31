@@ -45,14 +45,15 @@ struct buttonView: View {
                 .background(Color.purple)
                 .cornerRadius(30)
         })
+        if user != nil{
         Button(action: {nextView = 4}, label: {
-            Text("Options")
+            Text("Profile")
                 .padding()
                 .font(.title)
                 .foregroundColor(.black)
                 .background(Color.purple)
                 .cornerRadius(30)
-        })
+        })}
     }
 }
 
@@ -112,10 +113,10 @@ struct MainMenuView: View {
                 Spacer()
             }
         }
-        .navigate(to: PreGameView(), when: Binding<Bool>(get: {nextView == 1}, set: {_ in}))
+        .navigate(to: PreGameView(user: $user), when: Binding<Bool>(get: {nextView == 1}, set: {_ in}))
         .navigate(to: MainMenuView(), when: Binding<Bool>(get: {nextView == 2}, set: {_ in}))
         .navigate(to: StoreView(), when: Binding<Bool>(get: {nextView == 3}, set: {_ in}))
-        .navigate(to: OptionView(), when: Binding<Bool>(get: {nextView == 4}, set: {_ in}))
+        .navigate(to: OptionView(user: $user), when: Binding<Bool>(get: {nextView == 4}, set: {_ in}))
         .navigate(to: MainMenuView(), when: Binding<Bool>(get: {nextView == 5}, set: {_ in}))
         .alert(isPresented: $isAlert, content: {
             Alert(title: Text("STOP"), message: Text("Feature Not Yet Implemented"), dismissButton: .cancel({isAlert = false}))

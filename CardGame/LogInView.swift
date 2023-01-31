@@ -26,6 +26,7 @@ struct LogInView: View {
                     Text("Username")
                     TextField("Required", text: $username)
                         .disableAutocorrection(true)
+                        .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                 }
                 HStack{
                     Text("Password")

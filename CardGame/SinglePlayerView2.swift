@@ -10,7 +10,7 @@ import SwiftUI
 struct SinglePlayerView2: View {
     var selDeck: String
     var numPlayers: Int
-    var user :User
+    @Binding var user :User?
     @State private var player :Player = Player()
     @State private var dealer :Player = Player()
     @State private var deck = [Card]()
@@ -25,8 +25,8 @@ struct SinglePlayerView2: View {
     var start: some View {
         VStack{
         Button(action: {
-                player = Player(name: user.displayName, money: user.money)
-                initialMoney = user.money
+                player = Player(name: user?.displayName ?? "defaultUser", money: user?.money ?? 500)
+                initialMoney = user?.money ?? 500
                 for suit in CardSuite.allCases {
                     for i in 1...13 {
                         let card: Card = Card(cardSuite: suit, cardNum: String(i), deckType: selDeck)
@@ -87,7 +87,7 @@ struct SinglePlayerView2: View {
                     }
                         else if (currSum == 21){
                             player.money += bet * 2
-                            user.wins += 1
+                            if user != nil {user!.wins += 1}
                             msg = "Won w/ BlackJack!"
                             handOver = true
                         }}, label: {
@@ -104,7 +104,7 @@ struct SinglePlayerView2: View {
                             DealerTotal = dealer.sumHand()
                         }
                         if (DealerTotal > 21 || total > DealerTotal){player.money += bet
-                            user.wins += 1
+                            if user != nil {user!.wins += 1}
                             msg = "Win!"
                             handOver = true}
                         else {player.money -= bet
@@ -145,13 +145,15 @@ struct SinglePlayerView2: View {
             if (!pressStart) {start}
             else { game }
         }
-        .navigate(to: GameResultsView(user: user, gamesPlayed: gamesPlayed, moneyEarned: player.money - initialMoney), when: $gameEnd)
+        .navigate(to: GameResultsView(user: $user, gamesPlayed: gamesPlayed, moneyEarned: player.money - initialMoney), when: $gameEnd)
     }
 }
 
 
 struct SinglePlayerView2_Previews: PreviewProvider {
+    @State static var user: User? = nil
+    
     static var previews: some View {
-        SinglePlayerView2(selDeck: "Classic", numPlayers: 4, user: User(username: "Garsh", displayName: "Garsh"))
+        SinglePlayerView2(selDeck: "Classic", numPlayers: 4, user: $user)
     }
 }

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Alamofire
 
 struct TopView: View {
     var body: some View {
@@ -75,7 +74,7 @@ struct PreGameView: View {
     @State private var isAlert: Bool = false
     @State var selDeck: String = ""
     @State var numPlayers: Int = 2
-    @State var user: User = testUser
+    @Binding var user: User?
     
     var body: some View {
         ZStack{
@@ -92,12 +91,6 @@ struct PreGameView: View {
                 BotView(numPlayers: $numPlayers)
                 Spacer()
                 Button(action: {if !selDeck.isEmpty {
-                    AF.request("http://localhost:6969/user/FatRat60", parameters: ["username":"FatRat60", "password":"garshMaxie"]).responseJSON { (response) in
-                        if let data = response.value as? [String: Any] {
-                            user = User(username: data["username"] as! String, displayName: data["displayName"] as! String, money: data["money"] as! Int, wins: data["wins"] as! Int, gamesPlayed: data["gamesPlayed"] as! Int)
-                        }
-                            else {return}
-                    }
                     pressed = true
                 } else {
                     isAlert = true
@@ -112,7 +105,7 @@ struct PreGameView: View {
                 Spacer()
             }
         }
-        .navigate(to: SinglePlayerView2(selDeck: selDeck, numPlayers: numPlayers, user: user), when: $pressed)
+        .navigate(to: SinglePlayerView2(selDeck: selDeck, numPlayers: numPlayers, user: $user), when: $pressed)
         .alert(isPresented: $isAlert, content: {
             Alert(title: Text("STOP"), message: Text("Please select a deck to continue"),
                   dismissButton: .cancel(Text("Ok"), action: {isAlert = false
@@ -121,13 +114,11 @@ struct PreGameView: View {
     }
 }
 
-let testUser = User(username: "Garsh", displayName: "BigCheezBoi69")
-
 
 struct PreGameView_Previews: PreviewProvider {
+    @State static var user: User? = nil
+    
     static var previews: some View {
-        PreGameView()
+        PreGameView(user: $user)
     }
 }
-
-/* AF.request("http://localhost:6969/signup", method: .post, parameters: ["username":"FatRat60", "password":"garshMaxie"], encoder: JSONParameterEncoder.default) */

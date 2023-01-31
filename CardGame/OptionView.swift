@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OptionView: View {
     @State private var pressed: Bool = false
+    @Binding var user: User?
     
     var body: some View {
         ZStack{
@@ -40,7 +41,9 @@ struct OptionView: View {
 }
 
 struct OptionView_Previews: PreviewProvider {
+    @State static var user: User? = nil
+    
     static var previews: some View {
-        OptionView()
+        OptionView(user: $user)
     }
 }

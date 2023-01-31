@@ -9,7 +9,7 @@ import SwiftUI
 import Alamofire
 
 struct GameResultsView: View {
-    var user: User
+    @Binding var user: User?
     var gamesPlayed: Int
     var moneyEarned: Int
     @State private var toMain: Bool = false
@@ -20,21 +20,21 @@ struct GameResultsView: View {
                 if (moneyEarned >= 0){
                     Text("Congratulations!!")
                         .font(.system(size: 28, weight: .bold))
-                    Text("\(user.displayName) won a whopping $\(moneyEarned) over \(gamesPlayed) games.")
+                    Text("\(user?.displayName ?? "defaultUser") won a whopping $\(moneyEarned) over \(gamesPlayed) games.")
                     Text("Fucking sick as 'ell, mate!")
                 }
                 else{
                     Text("Ruh Roh...")
                         .font(.system(size: 28, weight: .bold))
-                    Text(user.displayName + " lost a whopping $\(-moneyEarned) over \(gamesPlayed) games.")
+                    Text(user?.displayName ?? "defaultUser" + " lost a whopping $\(-moneyEarned) over \(gamesPlayed) games.")
                     Text("Better luck next time!")
                 }
                 Spacer()
-                Button(action: {user.gamesPlayed += gamesPlayed
-                        user.money += moneyEarned
-                    AF.request("http://localhost:6969/updateUser", method: .post, parameters: ["username":user.username, "displayName":user.displayName, "money":String(user.money), "wins":String(user.wins), "gamesPlayed":String(user.gamesPlayed)], encoder: JSONParameterEncoder.default).response {
+                Button(action: {if user != nil {user!.gamesPlayed += gamesPlayed
+                        user!.money += moneyEarned
+                    AF.request("http://localhost:6969/updateUser", method: .post, parameters: ["username":user!.username, "displayName":user!.displayName, "money":String(user!.money), "wins":String(user!.wins), "gamesPlayed":String(user!.gamesPlayed)], encoder: JSONParameterEncoder.default).response {
                         response in debugPrint(response)
-                    }
+                    }}
                         toMain = true}, label: {
                     Text("Main Menu")
                         .padding()
@@ -50,7 +50,9 @@ struct GameResultsView: View {
 }
 
 struct GameResultsView_Previews: PreviewProvider {
+    @State static var user: User? = nil
+    
     static var previews: some View {
-        GameResultsView(user: User(username: "Garsh", displayName: "Garsh"), gamesPlayed: 12, moneyEarned: -45000)
+        GameResultsView(user: $user, gamesPlayed: 12, moneyEarned: -45000)
     }
 }
