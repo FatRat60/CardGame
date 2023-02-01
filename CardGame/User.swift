@@ -26,7 +26,7 @@ class User {
     
     init(username :String, displayName :String) {
         self.username = username
-        self.displayName = "impySHrimply"
+        self.displayName = displayName
         self.money = 5000
         self.wins = 0
         self.gamesPlayed = 0
