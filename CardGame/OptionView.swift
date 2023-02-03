@@ -108,7 +108,7 @@ struct OptionView: View {
                 Spacer()
             }
         }
-        .navigate(to: MainMenuView(), when: $pressed)
+        .navigate(to: MainMenuView(user: user), when: $pressed)
         .popover(isPresented: $changeName, arrowEdge: .top, content: {
             editView(state: $changeName, user: $user)
         })

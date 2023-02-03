@@ -12,8 +12,13 @@ struct LeaderBoardView: View {
     
     var body: some View {
         ZStack{
-            
+            Text("Garsh")
         }
+        .onAppear(perform: {
+            AF.request("http://localhost:6969/users").responseJSON {
+                (response) in debugPrint(response)
+            }
+        })
     }
 }
 

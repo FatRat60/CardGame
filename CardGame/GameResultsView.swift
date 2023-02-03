@@ -45,7 +45,7 @@ struct GameResultsView: View {
                 })
             }
         }
-        .navigate(to: MainMenuView(), when: $toMain)
+        .navigate(to: MainMenuView(user: user), when: $toMain)
     }
 }
 

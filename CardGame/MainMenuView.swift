@@ -36,7 +36,7 @@ struct buttonView: View {
                 .foregroundColor(.black)
                 .background(Color.purple)
                 .cornerRadius(30)
-        }).disabled(user == nil)
+        })
         Button(action: {nextView = 3}, label: {
             Text("Store")
                 .padding()
@@ -59,7 +59,7 @@ struct buttonView: View {
 
 struct MainMenuView: View {
     @State private var isAlert: Bool = false
-    @State var user: User? = nil
+    @State var user: User?
     @State private var nextView: Int = 0
     @State private var logView: Bool = false
     

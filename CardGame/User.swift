@@ -7,9 +7,9 @@
 
 import Foundation
 
-class User {
+class User: ObservableObject {
     let username :String
-    var displayName : String
+    @Published var displayName : String
     var money :Int
     var wins :Int
     var gamesPlayed:Int
