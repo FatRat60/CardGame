@@ -60,6 +60,7 @@ struct editView: View {
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Binding var user: User?
+    @Binding var doSave: Bool
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         let picker = UIImagePickerController()
@@ -87,6 +88,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             if let uiImage = info[.originalImage] as? UIImage {
                 parent.user!.profile = uiImage
             }
+            parent.doSave = true
             picker.dismiss(animated: true, completion: nil)
         }
     }
@@ -95,6 +97,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 struct OptionView: View {
     @State private var pressed: Bool = false
     @State private var changeName: Bool = false
+    @State private var doSave: Bool = false
     @State private var pickImage: Bool = false
     @Binding var user: User?
     
@@ -132,7 +135,27 @@ struct OptionView: View {
                             .cornerRadius(30)
                     })
                 }
-                Button(action: {pressed = true}, label: {
+                Button(action: {if doSave {
+                    AF.request("http://localhost:6969/updateUser", method: .post, parameters: ["username":user!.username, "displayName":user!.displayName, "profile":user!.base64Encode(), "money":String(user!.money), "wins":String(user!.wins), "gamesPlayed":String(user!.gamesPlayed)], encoder: JSONParameterEncoder.default).response { (response) in
+                        // Check the status code of response
+                        switch response.response?.statusCode {
+                        case let code?:
+                            print(code)
+                            switch code {
+                            // if sucess try to parse User
+                            case 200:
+                                do {
+                                    print("success")
+                                }
+                            default:
+                                print("Could not get user")
+                            }
+                        case .none:
+                            print("Request failed")
+                        }
+                    }
+                }
+                        pressed = true}, label: {
                     Text("Save")
                         .padding()
                         .font(.title)
@@ -148,7 +171,7 @@ struct OptionView: View {
             editView(state: $changeName, user: $user)
         })
         .sheet(isPresented: $pickImage, content: {
-            ImagePicker(user: $user)
+            ImagePicker(user: $user, doSave: $doSave)
         })
     }
 }
