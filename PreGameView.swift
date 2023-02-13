@@ -17,19 +17,20 @@ struct TopView: View {
 
 struct MidView: View {
     @Binding var selDeck: String
+    var decks :[CardSelect]
     
     var body: some View {
         Text("Decks")
             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
         Divider()
         HStack(alignment: .center){
-                ForEach(CardSelectList, id: \.id){
+                ForEach(decks, id: \.id){
                     card in
                     VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: CGFloat(-20)){
                     CardSelectCard(cardSel: card)
                         Button(action: {selDeck = card.name}, label: {
                         Text("Use")
-                    }).disabled(!card.canPick)
+                    })
                         .padding(/*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                         .font(.custom("headline", size: CGFloat(15)))
                         .foregroundColor(.black)
@@ -86,7 +87,7 @@ struct PreGameView: View {
                 Spacer()
                 Spacer()
                 TopView()
-                MidView(selDeck: $selDeck)
+                MidView(selDeck: $selDeck, decks: user?.decks ?? [CardSelect(id: 1, image: "defaultCard", name: "Classic")])
                 Spacer()
                 BotView(numPlayers: $numPlayers)
                 Spacer()

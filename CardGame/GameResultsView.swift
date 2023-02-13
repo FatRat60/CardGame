@@ -26,7 +26,7 @@ struct GameResultsView: View {
                 else{
                     Text("Ruh Roh...")
                         .font(.system(size: 28, weight: .bold))
-                    Text(user?.displayName ?? "defaultUser" + " lost a whopping $\(-moneyEarned) over \(gamesPlayed) games.")
+                    Text("\(user?.displayName ?? "defaultUser") lost a whopping $\(-moneyEarned) over \(gamesPlayed) games.")
                     Text("Better luck next time!")
                 }
                 Spacer()

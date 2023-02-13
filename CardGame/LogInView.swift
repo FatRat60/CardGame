@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import SwiftyJSON
 
 struct LogInView: View {
     @Binding var user: User?
@@ -43,13 +44,15 @@ struct LogInView: View {
                         // if sucess try to parse User
                         case 200:
                             do {
-                                if let data = response.value as? [String: Any] {
-                                    user = User(username: data["username"] as! String, displayName: data["displayName"] as! String, money: data["money"] as! Int, wins: data["wins"] as! Int, gamesPlayed: data["gamesPlayed"] as! Int)
+                                let json = JSON(response.value!)
+                                let deckJson = json["decks"].arrayValue
+                                var decks :[CardSelect] = []
+                                for deck in deckJson {
+                                    decks.append(CardSelect(id: deck["id"].intValue, image: deck["image"].stringValue, name: deck["name"].stringValue))
+                                }
+                                user = User(username: json["username"].stringValue, displayName: json["displayName"].stringValue, profile: json["profile"].stringValue, money: json["money"].intValue, wins: json["wins"].intValue, gamesPlayed: json["gamesPlayed"].intValue,
+                                                decks: decks)
                                     keepOpen = false
-                                }
-                                else{
-                                    invalid = true
-                                }
                             }
                         default:
                             invalid = true
@@ -85,49 +88,6 @@ struct LogInView: View {
         .alert(isPresented: $invalid, content: {
             Alert(title: Text("STOP"), message: Text("Invalid Login Credentials"), dismissButton: .cancel({invalid = false}))
         })
-    }
-}
-
-typealias gotUser = (inout Bool, inout Bool, User?) -> ()
-
-func makeLogInCall(username: String, password: String, user: inout User?, keepOpen: inout Bool, invalid: inout Bool,  completed: gotUser) -> Void {
-    var DataUser: User? = nil
-    // Make the login call
-    AF.request("http://localhost:6969/login", method: .post, parameters: ["username":username, "password":password], encoder: JSONParameterEncoder.default).responseJSON { (response) in
-        // Check the status code of response
-        switch response.response?.statusCode {
-        case let code?:
-            print(code)
-            switch code {
-            // if sucess try to parse User
-            case 200:
-                do {
-                    if let data = response.value as? [String: Any] {
-                        DataUser = User(username: data["username"] as! String, displayName: data["displayName"] as! String, money: data["money"] as! Int, wins: data["wins"] as! Int, gamesPlayed: data["gamesPlayed"] as! Int)
-                    }
-                }
-            default:
-                print("Could not get user")
-            }
-        case .none:
-            print("Request failed")
-        }
-    }
-    user = DataUser
-    print("request over")
-    // After request call closure
-    completed(&keepOpen, &invalid, user)
-}
-
-func checkUser(keepOpen: inout Bool, invalid: inout Bool, user: User?) -> Void {
-    print("checking user")
-    // If user is found && valid password, return to main menu
-    if user != nil {
-        keepOpen = false
-    }
-    // enable invalid credentials pop up
-    else {
-        invalid = true
     }
 }
 

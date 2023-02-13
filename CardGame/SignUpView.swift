@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import SwiftyJSON
 
 struct SignUpView: View {
     @Binding var user: User?
@@ -34,7 +35,8 @@ struct SignUpView: View {
                         .autocapitalization(.none)
                 }
                 Button(action: {// Make the signup call
-                    AF.request("http://localhost:6969/signup", method: .post, parameters: ["username":username, "password":password], encoder: JSONParameterEncoder.default).responseJSON { (response) in
+                    let image = UIImage(named: "defaultPfp")
+                    AF.request("http://localhost:6969/signup", method: .post, parameters: ["username":username, "password":password, "profile":image!.pngData()!.base64EncodedString()], encoder: JSONParameterEncoder.default).responseJSON { (response) in
                         // Check the status code of response
                         switch response.response?.statusCode {
                         case let code?:
@@ -43,10 +45,14 @@ struct SignUpView: View {
                             // if sucess try to parse User
                             case 201:
                                 do {
-                                    if let data = response.value as? [String: Any] {
-                                        user = User(username: data["username"] as! String, displayName: data["displayName"] as! String, money: data["money"] as! Int, wins: data["wins"] as! Int, gamesPlayed: data["gamesPlayed"] as! Int)
-                                        keepOpen = false
+                                    let json = JSON(response.value!)
+                                    let deckJson :Array<JSON> = json["decks"].arrayValue
+                                    var decks :[CardSelect] = []
+                                    for deck in deckJson {
+                                        decks.append(CardSelect(id: deck["id"].intValue, image: deck["image"].stringValue, name: deck["name"].stringValue))
                                     }
+                                    user = User(username: json["username"].stringValue, displayName: json["displayName"].stringValue, profile: json["profile"].stringValue, money: json["money"].intValue, wins: json["wins"].intValue, gamesPlayed: json["gamesPlayed"].intValue, decks: decks)
+                                        keepOpen = false
                                 }
                             default:
                                 print("Could not get user")
