@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import Alamofire
 
 struct editView: View {
@@ -23,7 +24,7 @@ struct editView: View {
                         .disableAutocorrection(true)
                         .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                 }
-                Button(action: {AF.request("http://localhost:6969/updateUser", method: .post, parameters: ["username":user!.username, "displayName":displayName, "money":String(user!.money), "wins":String(user!.wins), "gamesPlayed":String(user!.gamesPlayed)], encoder: JSONParameterEncoder.default).response { (response) in
+                Button(action: {AF.request("http://localhost:6969/updateUser", method: .post, parameters: ["username":user!.username, "displayName":displayName, "profile":user!.base64Encode(), "money":String(user!.money), "wins":String(user!.wins), "gamesPlayed":String(user!.gamesPlayed)], encoder: JSONParameterEncoder.default).response { (response) in
                     // Check the status code of response
                     switch response.response?.statusCode {
                     case let code?:
@@ -33,7 +34,6 @@ struct editView: View {
                         case 200:
                             do {
                                 user!.displayName = displayName
-                                
                             }
                         default:
                             print("Could not get user")
@@ -58,9 +58,44 @@ struct editView: View {
     }
 }
 
+struct ImagePicker: UIViewControllerRepresentable {
+    @Binding var user: User?
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = context.coordinator
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
+        
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        let parent: ImagePicker
+        
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let uiImage = info[.originalImage] as? UIImage {
+                parent.user!.profile = uiImage
+            }
+            picker.dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
 struct OptionView: View {
     @State private var pressed: Bool = false
     @State private var changeName: Bool = false
+    @State private var pickImage: Bool = false
     @Binding var user: User?
     
     var body: some View {
@@ -74,10 +109,10 @@ struct OptionView: View {
                 Text(user!.username + "'s Profile")
                     .font(.system(size: 28, weight: .bold))
                 Divider()
-                Image("defaultPfp")
+                Image(uiImage: user!.profile)
                     .resizable()
                     .frame(width: 200, height: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                Button(action: {}, label: {
+                Button(action: {pickImage = true}, label: {
                     Text("Change Profile Pic")
                         .padding()
                         .font(.footnote)
@@ -111,6 +146,9 @@ struct OptionView: View {
         .navigate(to: MainMenuView(user: user), when: $pressed)
         .popover(isPresented: $changeName, arrowEdge: .top, content: {
             editView(state: $changeName, user: $user)
+        })
+        .sheet(isPresented: $pickImage, content: {
+            ImagePicker(user: $user)
         })
     }
 }
