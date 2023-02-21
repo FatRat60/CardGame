@@ -48,7 +48,7 @@ struct LogInView: View {
                                 let deckJson = json["decks"].arrayValue
                                 var decks :[CardSelect] = []
                                 for deck in deckJson {
-                                    decks.append(CardSelect(id: deck["id"].intValue, image: deck["image"].stringValue, name: deck["name"].stringValue))
+                                    decks.append(CardSelect(id: deck["id"].intValue, image: deck["image"].stringValue, name: deck["name"].stringValue, price: 1))
                                 }
                                 user = User(username: json["username"].stringValue, displayName: json["displayName"].stringValue, profile: json["profile"].stringValue, money: json["money"].intValue, wins: json["wins"].intValue, gamesPlayed: json["gamesPlayed"].intValue,
                                                 decks: decks)

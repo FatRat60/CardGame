@@ -87,7 +87,7 @@ struct PreGameView: View {
                 Spacer()
                 Spacer()
                 TopView()
-                MidView(selDeck: $selDeck, decks: user?.decks ?? [CardSelect(id: 1, image: "defaultCard", name: "Classic")])
+                MidView(selDeck: $selDeck, decks: user?.decks ?? [CardSelect(id: 1, image: "defaultCard", name: "Classic", price: 1)])
                 Spacer()
                 BotView(numPlayers: $numPlayers)
                 Spacer()

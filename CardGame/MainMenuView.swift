@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Alamofire
+import SwiftyJSON
 
 struct buttonView: View {
     @Binding var nextView: Int
@@ -115,7 +117,7 @@ struct MainMenuView: View {
         }
         .navigate(to: PreGameView(user: $user), when: Binding<Bool>(get: {nextView == 1}, set: {_ in}))
         .navigate(to: MainMenuView(), when: Binding<Bool>(get: {nextView == 2}, set: {_ in}))
-        .navigate(to: StoreView(), when: Binding<Bool>(get: {nextView == 3}, set: {_ in}))
+        .navigate(to: StoreView(user: $user), when: Binding<Bool>(get: {nextView == 3}, set: {_ in}))
         .navigate(to: OptionView(user: $user), when: Binding<Bool>(get: {nextView == 4}, set: {_ in}))
         .navigate(to: MainMenuView(), when: Binding<Bool>(get: {nextView == 5}, set: {_ in}))
         .alert(isPresented: $isAlert, content: {

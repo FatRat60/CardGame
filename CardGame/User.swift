@@ -36,7 +36,7 @@ class User: ObservableObject {
         self.money = 5000
         self.wins = 0
         self.gamesPlayed = 0
-        self.decks = [CardSelect(id: 1, image: "defaultCard", name: "Classic")]
+        self.decks = [CardSelect(id: 1, image: "defaultCard", name: "Classic", price: 1)]
     }
     
     func base64Encode() -> String {
