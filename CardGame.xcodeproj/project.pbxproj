@@ -30,6 +30,14 @@
 		27CC3CAC28EF97D100C756D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CC3CAB28EF97D100C756D4 /* Preview Assets.xcassets */; };
 		27CC3CB728EF97D100C756D4 /* CardGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC3CB628EF97D100C756D4 /* CardGameTests.swift */; };
 		27CC3CC228EF97D100C756D4 /* CardGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC3CC128EF97D100C756D4 /* CardGameUITests.swift */; };
+		27FC9ADB29ABDFC500D73F23 /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9ADA29ABDFC500D73F23 /* Stripe */; };
+		27FC9ADD29ABDFC500D73F23 /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9ADC29ABDFC500D73F23 /* StripeApplePay */; };
+		27FC9ADF29ABDFC500D73F23 /* StripeCardScan in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9ADE29ABDFC500D73F23 /* StripeCardScan */; };
+		27FC9AE129ABDFC500D73F23 /* StripeFinancialConnections in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9AE029ABDFC500D73F23 /* StripeFinancialConnections */; };
+		27FC9AE329ABDFC500D73F23 /* StripeIdentity in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9AE229ABDFC500D73F23 /* StripeIdentity */; };
+		27FC9AE529ABDFC500D73F23 /* StripePaymentSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9AE429ABDFC500D73F23 /* StripePaymentSheet */; };
+		27FC9AE729ABDFC500D73F23 /* StripePayments in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9AE629ABDFC500D73F23 /* StripePayments */; };
+		27FC9AE929ABDFC500D73F23 /* StripePaymentsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9AE829ABDFC500D73F23 /* StripePaymentsUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +92,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FC9AE729ABDFC500D73F23 /* StripePayments in Frameworks */,
+				27FC9AE529ABDFC500D73F23 /* StripePaymentSheet in Frameworks */,
 				27BCD6452999C937000A9620 /* SwiftyJSON in Frameworks */,
+				27FC9AE129ABDFC500D73F23 /* StripeFinancialConnections in Frameworks */,
+				27FC9ADD29ABDFC500D73F23 /* StripeApplePay in Frameworks */,
+				27FC9AE329ABDFC500D73F23 /* StripeIdentity in Frameworks */,
 				270355B0293AB6B5005531EB /* Alamofire in Frameworks */,
+				27FC9ADF29ABDFC500D73F23 /* StripeCardScan in Frameworks */,
+				27FC9AE929ABDFC500D73F23 /* StripePaymentsUI in Frameworks */,
+				27FC9ADB29ABDFC500D73F23 /* Stripe in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +214,14 @@
 			packageProductDependencies = (
 				270355AF293AB6B5005531EB /* Alamofire */,
 				27BCD6442999C937000A9620 /* SwiftyJSON */,
+				27FC9ADA29ABDFC500D73F23 /* Stripe */,
+				27FC9ADC29ABDFC500D73F23 /* StripeApplePay */,
+				27FC9ADE29ABDFC500D73F23 /* StripeCardScan */,
+				27FC9AE029ABDFC500D73F23 /* StripeFinancialConnections */,
+				27FC9AE229ABDFC500D73F23 /* StripeIdentity */,
+				27FC9AE429ABDFC500D73F23 /* StripePaymentSheet */,
+				27FC9AE629ABDFC500D73F23 /* StripePayments */,
+				27FC9AE829ABDFC500D73F23 /* StripePaymentsUI */,
 			);
 			productName = CardGame;
 			productReference = 27CC3CA128EF97CB00C756D4 /* CardGame.app */;
@@ -273,6 +297,7 @@
 			packageReferences = (
 				270355AE293AB6B5005531EB /* XCRemoteSwiftPackageReference "Alamofire" */,
 				27BCD6432999C937000A9620 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */,
 			);
 			productRefGroup = 27CC3CA228EF97CB00C756D4 /* Products */;
 			projectDirPath = "";
@@ -672,6 +697,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stripe/stripe-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 23.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -684,6 +717,46 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 27BCD6432999C937000A9620 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		27FC9ADA29ABDFC500D73F23 /* Stripe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = Stripe;
+		};
+		27FC9ADC29ABDFC500D73F23 /* StripeApplePay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = StripeApplePay;
+		};
+		27FC9ADE29ABDFC500D73F23 /* StripeCardScan */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = StripeCardScan;
+		};
+		27FC9AE029ABDFC500D73F23 /* StripeFinancialConnections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = StripeFinancialConnections;
+		};
+		27FC9AE229ABDFC500D73F23 /* StripeIdentity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = StripeIdentity;
+		};
+		27FC9AE429ABDFC500D73F23 /* StripePaymentSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = StripePaymentSheet;
+		};
+		27FC9AE629ABDFC500D73F23 /* StripePayments */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = StripePayments;
+		};
+		27FC9AE829ABDFC500D73F23 /* StripePaymentsUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FC9AD929ABDFC500D73F23 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = StripePaymentsUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,12 +8,44 @@
 import SwiftUI
 import Alamofire
 import SwiftyJSON
+import StripePaymentSheet
+
+struct payView: View {
+    @Binding var user: User?
+    @Binding var clientSecret: String
+    @State private var sheet: PaymentSheet? = nil
+    @State private var pay: Bool = false
+    
+    var body: some View {
+        paymentSheet(isPresented: $pay, paymentSheet: sheet!, onCompletion: {(paymentResult) in
+                     switch paymentResult {
+        case .completed:
+            print("paymentCompleted")
+        case .canceled:
+            print("Payment canceled!")
+        case .failed:
+            print("payment failed")
+        }})
+        .onAppear(perform: {
+            var config = PaymentSheet.Configuration()
+            config.merchantDisplayName = "Fat Rat, Inc"
+            
+            sheet = PaymentSheet(paymentIntentClientSecret: clientSecret, configuration: config)
+            
+            pay = true
+        })
+    }
+}
 
 struct StoreView: View {
     @State var storeItems: [CardSelect] = []
     @State private var didLoad: Bool = false
+    @State private var didBuy: Bool = false
     @State private var pressed: Bool = false
     @Binding var user: User?
+    @State private var clientSecret: String = ""
+    @State private var boughtItem: CardSelect? = nil
+    
     var body: some View {
         ZStack{
             Image("mainMenuBackground")
@@ -29,7 +61,24 @@ struct StoreView: View {
                     VStack{
                         CardSelectCard(cardSel: card)
                         if (user != nil && user!.decks.count < 2){
-                            Button(action: {user!.decks.append(card)}, label: {
+                            Button(action: {AF.request("http://localhost:6969/payment", method: .post, parameters: ["items": [card.name]], encoder: JSONParameterEncoder.default).responseJSON {
+                                (response) in
+                                switch response.response?.statusCode {
+                                case let code?:
+                                    switch code {
+                                    case 200:
+                                        do {
+                                            let json = JSON(response.value!)
+                                            clientSecret = json["clientSecret"].stringValue
+                                            didBuy = true
+                                        }
+                                    default:
+                                        print("failed")
+                                    }
+                                case .none:
+                                    print("failed")
+                                }
+                            }}, label: {
                                 Text("Buy: $\(card.price)")
                                 .padding()
                                 .font(.title)
@@ -57,7 +106,8 @@ struct StoreView: View {
                 })
             }
         }
-        .onAppear(perform: {if !didLoad {
+        .onAppear(perform: {StripeAPI.defaultPublishableKey = "pk_live_51MZiLnLnhkBEjmx59kHkPeJPeTkqJDBnAt1JcltDpkkh9LWgEeCVLecaUw4kqJrzBSo0rCSjfRYoOrTKqZaDXktx00JeCeTMVQ"
+            if !didLoad {
             AF.request("http://localhost:6969/store", method: .post, parameters: ["items":["Anime"]], encoder: JSONParameterEncoder.default).responseJSON {
                 (response) in
                 switch response.response?.statusCode {
@@ -83,6 +133,7 @@ struct StoreView: View {
             }
         }})
         .navigate(to: MainMenuView(user: user), when: $pressed)
+        .popover(isPresented: $didBuy, content: {payView(user: $user, clientSecret: $clientSecret)})
     }
 }
 
