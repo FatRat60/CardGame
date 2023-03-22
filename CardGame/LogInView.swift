@@ -31,7 +31,7 @@ struct LogInView: View {
                 }
                 HStack{
                     Text("Password")
-                    TextField("Required", text: $password)
+                    SecureField("Required", text: $password)
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
                 }

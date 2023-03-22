@@ -59,9 +59,9 @@ struct Card :Identifiable, Equatable{
     }
 }
 
-class Player {
-    let name :String
-    var money :Int
+class Player : ObservableObject{
+    var name :String
+    @Published var money :Int
     @Published var hand :[Card]
     
     init(name :String, money :Int) {
@@ -86,5 +86,21 @@ class Player {
             else{cnt += val}
         }
         return cnt
+    }
+    
+    func addCard(newCard: Card) {
+        self.hand.append(newCard)
+        objectWillChange.send()
+    }
+    
+    func removeCards() {
+        self.hand.removeAll()
+        objectWillChange.send()
+    }
+    
+    func endHand(moneyWon: Int)
+    {
+        self.money += moneyWon
+        objectWillChange.send()
     }
 }

@@ -12,27 +12,43 @@ import StripePaymentSheet
 
 struct payView: View {
     @Binding var user: User?
-    @Binding var clientSecret: String
+    var clientSecret: String
+    var ephKey: String
+    var cust: String
+    
     @State private var sheet: PaymentSheet? = nil
     @State private var pay: Bool = false
     
     var body: some View {
-        paymentSheet(isPresented: $pay, paymentSheet: sheet!, onCompletion: {(paymentResult) in
-                     switch paymentResult {
-        case .completed:
-            print("paymentCompleted")
-        case .canceled:
-            print("Payment canceled!")
-        case .failed:
-            print("payment failed")
-        }})
+        ZStack{
+            if (sheet != nil){
+                paymentSheet(isPresented: $pay, paymentSheet: sheet!, onCompletion: {(paymentResult) in
+                    switch paymentResult {
+                    case .completed:
+                        print("paymentCompleted")
+                    case .canceled:
+                        print("Payment canceled!")
+                    case .failed:
+                        print("payment failed")
+                    }})
+            }
+            else{
+                Text("Loading...")
+            }
+        }
         .onAppear(perform: {
             var config = PaymentSheet.Configuration()
             config.merchantDisplayName = "Fat Rat, Inc"
+            config.customer = .init(id: cust, ephemeralKeySecret: ephKey)
             
-            sheet = PaymentSheet(paymentIntentClientSecret: clientSecret, configuration: config)
+            DispatchQueue.main.async {
+                sheet = PaymentSheet(paymentIntentClientSecret: clientSecret, configuration: config)
+            }
             
             pay = true
+            if (sheet != nil){
+                print("Finished")
+            }
         })
     }
 }
@@ -44,6 +60,8 @@ struct StoreView: View {
     @State private var pressed: Bool = false
     @Binding var user: User?
     @State private var clientSecret: String = ""
+    @State private var custId: String = ""
+    @State private var ephKey: String = ""
     @State private var boughtItem: CardSelect? = nil
     
     var body: some View {
@@ -70,6 +88,8 @@ struct StoreView: View {
                                         do {
                                             let json = JSON(response.value!)
                                             clientSecret = json["clientSecret"].stringValue
+                                            custId = json["customer"].stringValue
+                                            ephKey = json["ephemeralKey"].stringValue
                                             didBuy = true
                                         }
                                     default:
@@ -132,8 +152,11 @@ struct StoreView: View {
                 }
             }
         }})
+        .onDisappear(perform: {
+            
+        })
         .navigate(to: MainMenuView(user: user), when: $pressed)
-        .popover(isPresented: $didBuy, content: {payView(user: $user, clientSecret: $clientSecret)})
+        .popover(isPresented: $didBuy, content: {payView(user: $user, clientSecret: clientSecret, ephKey: ephKey, cust: custId)})
     }
 }
 

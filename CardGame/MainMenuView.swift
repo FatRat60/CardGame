@@ -23,16 +23,14 @@ struct buttonView: View {
                 .background(Color.purple)
                 .cornerRadius(30)
         })
-        Button(action: {isAlert = true}, label: {
+        Button(action: {if (user != nil){
+            nextView = 2
+        }
+            else{
+                isAlert = true
+            }
+        }, label: {
             Text("Multiplayer")
-                .padding()
-                .font(.title)
-                .foregroundColor(.black)
-                .background(Color.purple)
-                .cornerRadius(30)
-        })
-        Button(action: {nextView = 5}, label: {
-            Text("Leaderboards")
                 .padding()
                 .font(.title)
                 .foregroundColor(.black)
@@ -116,12 +114,12 @@ struct MainMenuView: View {
             }
         }
         .navigate(to: PreGameView(user: $user), when: Binding<Bool>(get: {nextView == 1}, set: {_ in}))
-        .navigate(to: MainMenuView(), when: Binding<Bool>(get: {nextView == 2}, set: {_ in}))
+        .navigate(to: RoomSelectView(), when: Binding<Bool>(get: {nextView == 2}, set: {_ in}))
         .navigate(to: StoreView(user: $user), when: Binding<Bool>(get: {nextView == 3}, set: {_ in}))
         .navigate(to: OptionView(user: $user), when: Binding<Bool>(get: {nextView == 4}, set: {_ in}))
-        .navigate(to: MainMenuView(), when: Binding<Bool>(get: {nextView == 5}, set: {_ in}))
+        .navigate(to: TestView(), when: Binding<Bool>(get: {nextView == 5}, set: {_ in}))
         .alert(isPresented: $isAlert, content: {
-            Alert(title: Text("STOP"), message: Text("Feature Not Yet Implemented"), dismissButton: .cancel({isAlert = false}))
+            Alert(title: Text("STOP"), message: Text("Must be logged in to do multiplayer"), dismissButton: .cancel({isAlert = false}))
         })
         .popover(isPresented: $logView, arrowEdge: .top, content: {
             LogInView(user: $user, keepOpen: $logView)

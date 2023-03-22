@@ -11,8 +11,8 @@ struct SinglePlayerView2: View {
     var selDeck: String
     var numPlayers: Int
     @Binding var user :User?
-    @State private var player :Player = Player()
-    @State private var dealer :Player = Player()
+    @StateObject private var player :Player = Player()
+    @StateObject private var dealer :Player = Player()
     @State private var deck = [Card]()
     @State private var pressStart: Bool = false
     @State private var handOver: Bool = false
@@ -25,7 +25,8 @@ struct SinglePlayerView2: View {
     var start: some View {
         VStack{
         Button(action: {
-                player = Player(name: user?.displayName ?? "defaultUser", money: user?.money ?? 500)
+            player.money = user?.money ?? 500
+            player.name = user?.displayName ?? "Guest"
                 initialMoney = user?.money ?? 500
                 for suit in CardSuite.allCases {
                     for i in 1...13 {
@@ -35,10 +36,10 @@ struct SinglePlayerView2: View {
                 }
                 deck.shuffle()
                 deck.shuffle()
-                player.hand.append(deck.randomElement()!)
-                player.hand.append(deck.randomElement()!)
-                dealer.hand.append(deck.randomElement()!)
-                dealer.hand.append(deck.randomElement()!)
+            player.addCard(newCard: deck.randomElement()!)
+            player.addCard(newCard: deck.randomElement()!)
+            dealer.addCard(newCard: deck.randomElement()!)
+            dealer.addCard(newCard: deck.randomElement()!)
                 pressStart = true
                 
         }, label: {
@@ -124,12 +125,12 @@ struct SinglePlayerView2: View {
             Alert(title: Text("You " + msg), message: Text("play again?"),
                   primaryButton: .default(Text("Yes"), action: {gamesPlayed += 1
                         bet += 5
-                        player.hand.removeAll()
-                        dealer.hand.removeAll()
-                        player.hand.append(deck.randomElement()!)
-                        player.hand.append(deck.randomElement()!)
-                        dealer.hand.append(deck.randomElement()!)
-                        dealer.hand.append(deck.randomElement()!)
+                player.removeCards()
+                dealer.removeCards()
+                player.addCard(newCard: deck.randomElement()!)
+                player.addCard(newCard: deck.randomElement()!)
+                dealer.addCard(newCard: deck.randomElement()!)
+                dealer.addCard(newCard: deck.randomElement()!)
                         handOver = false}),
                   secondaryButton: .default(Text("Stop"), action: {gamesPlayed += 1
                         gameEnd = true}))

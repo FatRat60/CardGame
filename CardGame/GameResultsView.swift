@@ -33,7 +33,7 @@ struct GameResultsView: View {
                 Button(action: {if user != nil {user!.gamesPlayed += gamesPlayed
                         user!.money += moneyEarned
                         AF.request("http://localhost:6969/updateUser", method: .post, parameters: ["username":user!.username, "displayName":user!.displayName, "profile":user!.base64Encode(), "money":String(user!.money), "wins":String(user!.wins), "gamesPlayed":String(user!.gamesPlayed)], encoder: JSONParameterEncoder.default).response {
-                        response in debugPrint(response)
+                        response in print("success")
                     }}
                         toMain = true}, label: {
                     Text("Main Menu")

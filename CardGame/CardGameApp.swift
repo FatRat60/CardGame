@@ -11,7 +11,7 @@ import SwiftUI
 struct CardGameApp: App {
     var body: some Scene {
         WindowGroup {
-            MainMenuView()
+            MainMenuView(user: nil)
         }
     }
 }
@@ -34,5 +34,6 @@ extension View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }

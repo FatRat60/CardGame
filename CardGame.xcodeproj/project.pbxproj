@@ -16,6 +16,7 @@
 		2736163628FBA1A9002C4941 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736163528FBA1A9002C4941 /* Test.swift */; };
 		2736163B28FBA1ED002C4941 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736163A28FBA1ED002C4941 /* Game.swift */; };
 		27570D40297F1D9200BB81F1 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27570D3F297F1D9200BB81F1 /* LogInView.swift */; };
+		275C638629BC2A1B007DFC33 /* SocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C638529BC2A1B007DFC33 /* SocketDelegate.swift */; };
 		275CCC6A28FBA3260045B5C4 /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275CCC6928FBA3260045B5C4 /* PreGameView.swift */; };
 		275CCC7528FCA2420045B5C4 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275CCC7428FCA2420045B5C4 /* StoreView.swift */; };
 		2778451D29037974007B51ED /* CardSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778451C29037974007B51ED /* CardSelect.swift */; };
@@ -31,6 +32,8 @@
 		27CC3CAC28EF97D100C756D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27CC3CAB28EF97D100C756D4 /* Preview Assets.xcassets */; };
 		27CC3CB728EF97D100C756D4 /* CardGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC3CB628EF97D100C756D4 /* CardGameTests.swift */; };
 		27CC3CC228EF97D100C756D4 /* CardGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC3CC128EF97D100C756D4 /* CardGameUITests.swift */; };
+		27D9013C29CA4DD800FF273F /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D9013B29CA4DD800FF273F /* TestView.swift */; };
+		27EB714829B931ED008709A1 /* RoomSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB714729B931ED008709A1 /* RoomSelectView.swift */; };
 		27FC9ADB29ABDFC500D73F23 /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9ADA29ABDFC500D73F23 /* Stripe */; };
 		27FC9ADD29ABDFC500D73F23 /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9ADC29ABDFC500D73F23 /* StripeApplePay */; };
 		27FC9ADF29ABDFC500D73F23 /* StripeCardScan in Frameworks */ = {isa = PBXBuildFile; productRef = 27FC9ADE29ABDFC500D73F23 /* StripeCardScan */; };
@@ -66,6 +69,7 @@
 		2736163528FBA1A9002C4941 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		2736163A28FBA1ED002C4941 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		27570D3F297F1D9200BB81F1 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		275C638529BC2A1B007DFC33 /* SocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDelegate.swift; sourceTree = "<group>"; };
 		275CCC6928FBA3260045B5C4 /* PreGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreGameView.swift; path = ../PreGameView.swift; sourceTree = "<group>"; };
 		275CCC7428FCA2420045B5C4 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		2778451C29037974007B51ED /* CardSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSelect.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		27CC3CBD28EF97D100C756D4 /* CardGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CC3CC128EF97D100C756D4 /* CardGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameUITests.swift; sourceTree = "<group>"; };
 		27CC3CC328EF97D100C756D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27D9013B29CA4DD800FF273F /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		27EB714729B931ED008709A1 /* RoomSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomSelectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,15 +154,18 @@
 			isa = PBXGroup;
 			children = (
 				275CCC6928FBA3260045B5C4 /* PreGameView.swift */,
+				275C638529BC2A1B007DFC33 /* SocketDelegate.swift */,
 				279690D929050A6C00267B46 /* User.swift */,
 				27222F86291C8F5500D578A2 /* SinglePlayerView2.swift */,
 				271AC6FC29355BE90014D1A4 /* GameResultsView.swift */,
 				2778451C29037974007B51ED /* CardSelect.swift */,
 				27222F8B291D914200D578A2 /* HandView.swift */,
 				2778452129037BA1007B51ED /* CardSelectCard.swift */,
+				27D9013B29CA4DD800FF273F /* TestView.swift */,
 				27CC3CA428EF97CB00C756D4 /* CardGameApp.swift */,
 				2780DEC928F36F29007A6A22 /* MainMenuView.swift */,
 				2792A1FE298775490054A5C5 /* LeaderBoardView.swift */,
+				27EB714729B931ED008709A1 /* RoomSelectView.swift */,
 				27570D3F297F1D9200BB81F1 /* LogInView.swift */,
 				27A0ED932984B68800496404 /* SignUpView.swift */,
 				275CCC7428FCA2420045B5C4 /* StoreView.swift */,
@@ -347,6 +356,7 @@
 			files = (
 				27570D40297F1D9200BB81F1 /* LogInView.swift in Sources */,
 				2778451D29037974007B51ED /* CardSelect.swift in Sources */,
+				275C638629BC2A1B007DFC33 /* SocketDelegate.swift in Sources */,
 				2736162328FB9DFE002C4941 /* Card.swift in Sources */,
 				2792A1FF298775490054A5C5 /* LeaderBoardView.swift in Sources */,
 				2736163B28FBA1ED002C4941 /* Game.swift in Sources */,
@@ -360,8 +370,10 @@
 				275CCC6A28FBA3260045B5C4 /* PreGameView.swift in Sources */,
 				27A0ED942984B68800496404 /* SignUpView.swift in Sources */,
 				279690DA29050A6C00267B46 /* User.swift in Sources */,
+				27D9013C29CA4DD800FF273F /* TestView.swift in Sources */,
 				2780DECF28F3DC38007A6A22 /* OptionView.swift in Sources */,
 				27CC3CA528EF97CB00C756D4 /* CardGameApp.swift in Sources */,
+				27EB714829B931ED008709A1 /* RoomSelectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

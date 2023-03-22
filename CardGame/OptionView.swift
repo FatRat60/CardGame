@@ -31,7 +31,7 @@ struct editView: View {
                         print(code)
                         switch code {
                         // if sucess try to parse User
-                        case 200:
+                        case 201:
                             do {
                                 user!.displayName = displayName
                             }
@@ -86,7 +86,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let uiImage = info[.originalImage] as? UIImage {
-                parent.user!.profile = uiImage
+                parent.user!.changeProfilePic(newPfp: uiImage)
             }
             parent.doSave = true
             picker.dismiss(animated: true, completion: nil)

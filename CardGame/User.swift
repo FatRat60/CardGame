@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class User: ObservableObject {
-    let username :String
+    var username :String
     @Published var displayName :String
     @Published var profile :UIImage
     var money :Int
@@ -41,6 +41,35 @@ class User: ObservableObject {
     
     func base64Encode() -> String {
         return (self.profile.jpegData(compressionQuality: 1)?.base64EncodedString())!
+    }
+    
+    func updateName(newName: String)
+    {
+        self.displayName = newName
+        objectWillChange.send()
+    }
+    
+    func changeProfilePic(newPfp: UIImage)
+    {
+        self.profile = newPfp
+        objectWillChange.send()
+    }
+    
+    func logIn(username: String, displayName: String, profile: String, money: Int, wins: Int, gamesPlayed: Int, decks: [CardSelect])
+    {
+        self.username = username
+        self.displayName = displayName
+        self.profile = UIImage(data: Data(base64Encoded: profile, options: .ignoreUnknownCharacters)!) ?? UIImage(named: "DefaultPfp")!
+        self.money = money
+        self.wins = wins
+        self.gamesPlayed = gamesPlayed
+        self.decks = decks
+    }
+    
+    func logOut()
+    {
+        self.username = ""
+        self.displayName = ""
     }
     
     func win(amount :Int){ self.money += amount }
